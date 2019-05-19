@@ -17,6 +17,7 @@
         <constructor-arg ref="consoleEventLogger"/>
         <constructor-arg ref="event"/>
         <constructor-arg ref="fileEventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
 
     <bean id="event" class="com.bratash.spring.core.Event" scope="prototype">
@@ -30,6 +31,11 @@
 
     <bean id="fileEventLogger" class="com.bratash.spring.core.FileEventLogger" init-method="init">
         <constructor-arg value="/MyPrograms/springCore/src/main/resources/LogFile"/>
+    </bean>
+
+    <bean id="cacheFileEventLogger" class="com.bratash.spring.core.CacheFileEventLogger" destroy-method="destroy">
+        <constructor-arg value="/MyPrograms/springCore/src/main/resources/LogFile"/>
+        <constructor-arg value="5"/>
     </bean>
 
 </beans>
