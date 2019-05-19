@@ -15,6 +15,16 @@
     <bean id="app" class="com.bratash.spring.core.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="consoleEventLogger"/>
+        <constructor-arg ref="event"/>
+    </bean>
+
+    <bean id="event" class="com.bratash.spring.core.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean id="dateFormat" class="java.text.DateFormat" factory-method="getTimeInstance"/>
+        </constructor-arg>
     </bean>
 
 </beans>

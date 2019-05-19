@@ -6,21 +6,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
     Client client;
     ConsoleEventLogger eventLogger;
+    Event event;
 
-    public App(Client client, ConsoleEventLogger eventLogger) {
+    public App(Client client, ConsoleEventLogger eventLogger, Event event) {
         this.client = client;
         this.eventLogger = eventLogger;
-    }
-
-    public void logEvent(String msg){
-        String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+        this.event = event;
     }
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App)applicationContext.getBean("app");
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        app.eventLogger.logEvent(app.event);
     }
 }
