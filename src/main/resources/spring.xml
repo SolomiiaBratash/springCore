@@ -16,6 +16,7 @@
         <constructor-arg ref="client"/>
         <constructor-arg ref="consoleEventLogger"/>
         <constructor-arg ref="event"/>
+        <constructor-arg ref="fileEventLogger"/>
     </bean>
 
     <bean id="event" class="com.bratash.spring.core.Event" scope="prototype">
@@ -25,6 +26,10 @@
         <constructor-arg>
             <bean id="dateFormat" class="java.text.DateFormat" factory-method="getTimeInstance"/>
         </constructor-arg>
+    </bean>
+
+    <bean id="fileEventLogger" class="com.bratash.spring.core.FileEventLogger" init-method="init">
+        <constructor-arg value="/MyPrograms/springCore/src/main/resources/LogFile"/>
     </bean>
 
 </beans>
